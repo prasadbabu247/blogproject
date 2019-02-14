@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'mysite/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post draft list</title>
+</head>
+<body>
+{% block content %}
+    {% for p in posts %}
+        <div class="post">
+            <p class="date">Created:{{ p.created_date|date:'d-m-y' }}</p>
+            <h1><a href="{% url 'post_detail' pk=p.pk %}">{{ p.title }}</a>/h1>
+             <p>{{ p.text|truncatechars:200 }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+</body>
+</html>

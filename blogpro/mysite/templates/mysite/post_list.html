@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'mysite/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post list</title>
+</head>
+<body>
+{% block content %}
+    <div class="centestage">
+        {% if user.is_authenticated %}
+            {% for post in post_list %}
+                <div class="post">
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <div class="date">
+                        <p>Published on: {{ post.published|date:"D M Y" }}</p>
+                    </div>
+                    <a href="{% url 'post_detail' pk=post.pk %}">Comments:{{ post.approve_comments.count }}</a>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+{% endblock %}
+</body>
+</html>
